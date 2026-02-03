@@ -1,0 +1,24 @@
+# Dependencias
+node_modules/
+jspm_packages/
+.venv/
+env/
+venv/
+bin/
+obj/
+
+# Builds y temporales
+dist/
+build/
+out/
+.next/
+.cache/
+
+# Variables de entorno (¡Seguridad!)
+.env
+.env.local
+.env.development.local
+
+# Archivos de Sistema
+.DS_Store
+Thumbs.db
