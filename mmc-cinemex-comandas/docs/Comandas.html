@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Especificaciones Técnicas KDS</title>
+    <style>
+        /* Estilos Generales */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        h1 { 
+            border-bottom: 3px solid #007bff; 
+            padding-bottom: 10px; 
+            color: #007bff;
+            font-size: 2em;
+        }
+        h2 { 
+            color: #495057; 
+            margin-top: 30px; 
+            border-bottom: 1px solid #dee2e6;
+            padding-bottom: 5px;
+        }
+        h3 { color: #212529; margin-top: 20px; }
+        ul { margin-bottom: 20px; padding-left: 20px; }
+        li { margin-bottom: 8px; }
+        
+        /* Estilos Específicos de KDS */
+        .badge-status {
+            font-weight: bold;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            font-size: 0.9em;
+        }
+        .status-completed { background-color: #d1ecf1; color: #007bff; border: 1px solid #bee5eb; }
+        .status-delayed { background-color: #f8d7da; color: #dc3545; border: 1px solid #f5c6cb; }
+        .status-normal { background-color: #e2e3e5; color: #343a40; border: 1px solid #d6d8db; }
+        
+        .table-specs {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        .table-specs th, .table-specs td {
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            text-align: left;
+        }
+        .table-specs th {
+            background-color: #e9ecef;
+            color: #495057;
+        }
+        .callout {
+            border-left: 5px solid #ffc107;
+            background-color: #fff3cd;
+            padding: 15px;
+            margin-top: 20px;
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>KDS (Kitchen Display System) - Especificaciones Operacionales</h1>
+
+    <div class="callout">
+        <h3>Principio Central: Actualización Optimista</h3>
+        <p>El sistema prioriza la <strong>respuesta inmediata</strong> en la interfaz de usuario. Al cerrar un ítem, el estado visual se actualiza localmente (en React) antes de que la API confirme la persistencia en la base de datos.</p>
+    </div>
+
+    <h2>1. Funcionalidades Clave 🚀</h2>
+    
+    <h3>1.1. Gestión de Ítems y Cantidades</h3>
+    <ul>
+        <li><strong>Seguimiento de Progreso:</strong> Se basa en la relación entre <code>quantity</code> (total solicitado) y <code>completedQuantity</code> (total preparado).</li>
+        <li><strong>Lógica de Incremento:</strong> La cantidad a cerrar es modificable en el modal <code>ProductOptionsMenu.tsx</code>, limitada a <code>completedQuantity &lt;= quantity</code>.</li>
+        <li><strong>Cierre Automático:</strong> La Orden se marca como <strong>Completada</strong> (<code>preparationStatus = 5</code>) si **todos** sus ítems tienen <code>completedQuantity</code> igual a <code>quantity</code>.</li>
+    </ul>
+
+    <h3>1.2. Interacción y Comunicación</h3>
+    <ul>
+        <li><strong>Acción Frontend:</strong> Al presionar "Guardar Cambios", se invoca la función de actualización optimista para modificar el estado de la UI (<code>ordersData</code>).</li>
+        <li><strong>Llamada API:</strong> Paralelamente, se realiza una llamada <code>PATCH</code> a <code>item/update-completed-quantity</code> para la persistencia.</li>
+        <li><strong>Sincronización CRON:</strong> El ciclo periódico de consulta del *backend* asegura la coherencia final de los datos en caso de errores de red en la ruta optimista.</li>
+    </ul>
+
+    <hr>
+
+    <h2>2. Reglas de Visualización y Estilo (CardOrders.tsx) ✨</h2>
+    
+    <p>El estilo del borde de la tarjeta (Card) de una orden es el indicador principal del estado operativo, siguiendo una estricta jerarquía.</p>
+
+    <h3>2.1. Jerarquía Visual de Estados</h3>
+    <table class="table-specs">
+        <thead>
+            <tr>
+                <th>Prioridad</th>
+                <th>Estado</th>
+                <th>Condición</th>
+                <th>Estilo de Borde (Visual)</th>
+                <th>Visibilidad del Ícono de Alerta</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>**1.**</td>
+                <td><span class="badge-status status-completed">COMPLETADA</span></td>
+                <td><code>preparationStatus == 5</code></td>
+                <td>**Azul Claro** (<code>info</code>)</td>
+                <td>**OCULTA** (anula retraso)</td>
+            </tr>
+            <tr>
+                <td>**2.**</td>
+                <td><span class="badge-status status-delayed">RETRASADA</span></td>
+                <td>$\ne 5$ Y <code>isDelayed = true</code></td>
+                <td>**Rojo** (<code>danger</code>)</td>
+                <td>**VISIBLE**</td>
+            </tr>
+            <tr>
+                <td>**3.**</td>
+                <td><span class="badge-status status-normal">NORMAL</span></td>
+                <td>$\ne 5$ Y <code>isDelayed = false</code></td>
+                <td>**Azul Oscuro** (<code>primary</code>)</td>
+                <td>**OCULTA**</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>2.2. Elementos de la Tarjeta</h3>
+    <ul>
+        <li><strong>Identificador:</strong> Se muestra el ID de la orden (<code>#order.id</code>) y la hora.</li>
+        <li><strong>Contador de Progreso:</strong> Cada ítem dentro de la orden muestra su estado como <code>[completedQuantity]/[quantity] x [item.name]</code>.</li>
+        <li><strong>Cliente VIP:</strong> Si <code>order.isVIP</code> es verdadero, se debe mostrar un ícono de **VIP** (<code>TbVip</code>) en el encabezado.</li>
+    </ul>
+
+    <hr>
+
+    <h2>3. Lógica de Negocio (ItemService.ts) 🛡️</h2>
+
+    <p>El servicio del *backend* es responsable de la validación y persistencia de las cantidades.</p>
+
+    <h3>3.1. Validaciones en <code>updateCompletedQuantity(transId, completedQuantity)</code></h3>
+    <ul>
+        <li><strong>Existencia:</strong> El ítem debe ser encontrado por <code>transId</code>.</li>
+        <li><strong>Límite Superior:</strong> La `completedQuantity` **NO** puede exceder el `item.quantity` total.</li>
+        <li><strong>Límite Inferior:</strong> La `completedQuantity` **NO** puede ser menor a <code>item.completedQuantity</code> (no se permite revertir un cierre ya guardado).</li>
+    </ul>
+
+    <h3>3.2. Persistencia</h3>
+    <ul>
+        <li>Si la nueva `completedQuantity` es igual a <code>item.quantity</code>, el servicio debe actualizar ambos campos: <code>item.completedQuantity</code> y <code>item.preparationStatus = PreparationStatusEnum.Completed</code>.</li>
+    </ul>
+
+</body>
+</html>

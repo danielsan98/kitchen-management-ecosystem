@@ -1,0 +1,63 @@
+!ScalaScript1105
+// Saved by Diseñador Scala Versión 11.05.00 at 2025-12-10 13:05:34
+:"cinemex_pickup_led.sca"
+{
+  Group:
+    String(arrCompletedOrders[100], arrPendingOrders[100], letter_font_platino_bold, letter_font_platino_medium, url_fondo_platino_2p, url_fondo_market, letter_font_tradicional("MaisonNeue-Book (Western [<Maison Neue>])"), url_fondo_tradicional, maison_font_black, maison_font_book);
+    Integer(iTotalPreparacion, iTotalCompletadas, color_rojo, color_blanco, color_negro, color_negro_letras, color_verde, color_rosa, color_vino_letras, page_pending(1), page_completed(1), on_screen_time);
+    BackgroundSettings(Size(678, 344));
+    Config.RecentPublishLocations(PublishLocation("10.4.0.184 contentmanager", "Cinemex_pickup_led"));
+  Sequence:
+    :"set initial values"
+    {
+      Sequence:
+        on_screen_time = 5000;
+        letter_font_tradicional = "VVDSFifties-CondSBold (Western [<VVDS Fifties Cond SBold> 600])";
+        letter_font_platino_bold = "NeueMontreal-Bold (Western [<Neue Montreal> 700])";
+        letter_font_platino_medium = "NeueMontreal-Medium (Western [<Neue Montreal> 500])";
+        maison_font_black = "MaisonNeue-Black (Western [<Maison Neue Black> 900])";
+        maison_font_book = "MaisonNeue-Book (Western [<Maison Neue Book> 500])";
+        color_negro = 1;
+        color_blanco = 2;
+        color_verde = 3;
+        color_rojo = 4;
+        color_rosa = 5;
+        color_negro_letras = 6;
+        color_vino_letras = 7;
+        url_fondo_tradicional = "C:\ProgramData\Scala\InfoChannel Player 5\Content\marquesina\posters\bg_2720_tradicional[78774221000].png";
+        url_fondo_platino_2p = "C:\Users\Oscar Daniel\Downloads\pedidos_fondo_platino_merged.png";
+        url_fondo_market = "C:\Users\Oscar Daniel\Downloads\pedidos_fondo_platino_market.png";
+    }
+    :"get orders"
+    {
+      Sequence:
+        WindowsScript("scripts\cinemex-orders-script.py", Wait(On), Engine("Python.AXScript.2"), ShareVariable(arrCompletedOrders), ShareVariable(arrPendingOrders), ShareVariable(page_completed), ShareVariable(page_pending));
+    }
+    :"Display info"
+    {
+      Group:
+        :"Fondo"
+        Picture("assets\bg_blanco.jpg", Backdrop(Pen(20)), Margin(10, 10, 0, 0), UserPalette(RGBPen(1, $0, $ffffff, $93e55c, $e11b2b, $ff5f95, $222222, $4f0b0c, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa, $777777, $bbbbbb, $dddddd, $465a96)), AutoScale(FillAndTrim), Thumbnail(On), Operation(On));
+        :"FondoDerecho"
+        Rect(317, 0, 361, 344, AntiAlias(On), OnReplay(Replace), Thickness(2), Area(On, Pen(3)), Corners(TopLeft(Round), BottomLeft(Round)));
+        :"Titulo ordenes"
+        Text(25, 34, "PREPARACIÓN", Face(On, Pen(color_negro_letras)), Shadow(Off, Softness(5)), AntiAlias(On), OnReplay(Replace), Under(Off, Thickness(3)), Font(letter_font_tradicional, 64), UseCharHeight(On), Tabs(Relative(On)), Wrap(On, Width(1608)));
+        Text(24, 15, "Ordenes en", Face(On, Pen(color_negro_letras)), Shadow(Off, Softness(5)), AntiAlias(On), OnReplay(Replace), Under(Off, Thickness(3)), Font(maison_font_book, 24), UseCharHeight(On), Tabs(Relative(On)), Wrap(On, Width(725)));
+        Text(334, 15, "Ordenes Listas", Face(On, Pen(color_negro_letras)), Shadow(Off, Softness(5)), AntiAlias(On), OnReplay(Replace), Under(Off, Thickness(3)), Font(maison_font_book, 24), UseCharHeight(On), Tabs(Relative(On)), Wrap(On, Width(716)));
+        :"Ordenes"
+        Text(27, 105, "!(arrPendingOrders[1])", Face(On, Pen(color_negro_letras)), Backdrop(Off, Pen(color_vino_letras)), Focus(Off, Pen(15)), Shadow(Off, Softness(5)), Bevel(Off, Base(Pen(7)), Left(Pen(22)), Right(Pen(21)), Top(Pen(23)), Bottom(Pen(8))), AntiAlias(On), OnReplay(Replace), Under(Off, Thickness(3), Pen(6)), Font(maison_font_book, 38), UseCharHeight(On), Justify(Center, Top), Tabs(Relative(On)), Wrap(On, Width(480)));
+        Text(27, 143, "!(arrPendingOrders[3])", Face(On, Pen(color_negro_letras)), Backdrop(Off, Pen(color_vino_letras)), Focus(Off, Pen(15)), Shadow(Off, Softness(5)), Bevel(Off, Base(Pen(7)), Left(Pen(22)), Right(Pen(21)), Top(Pen(23)), Bottom(Pen(8))), AntiAlias(On), OnReplay(Replace), Under(Off, Thickness(3), Pen(6)), Font(maison_font_book, 38), UseCharHeight(On), Justify(Center, Top), Tabs(Relative(On)), Wrap(On, Width(352)));
+        Text(27, 181, "!(arrPendingOrders[5])", Face(On, Pen(color_negro_letras)), Backdrop(Off, Pen(color_vino_letras)), Focus(Off, Pen(15)), Shadow(Off, Softness(5)), Bevel(Off, Base(Pen(7)), Left(Pen(22)), Right(Pen(21)), Top(Pen(23)), Bottom(Pen(8))), AntiAlias(On), OnReplay(Replace), Under(Off, Thickness(3), Pen(6)), Font(maison_font_book, 38), UseCharHeight(On), Justify(Center, Top), Tabs(Relative(On)), Wrap(On, Width(480)));
+        Text(27, 219, "!(arrPendingOrders[7])", Face(On, Pen(color_negro_letras)), Backdrop(Off, Pen(color_vino_letras)), Focus(Off, Pen(15)), Shadow(Off, Softness(5)), Bevel(Off, Base(Pen(7)), Left(Pen(22)), Right(Pen(21)), Top(Pen(23)), Bottom(Pen(8))), AntiAlias(On), OnReplay(Replace), Under(Off, Thickness(3), Pen(6)), Font(maison_font_book, 38), UseCharHeight(On), Justify(Center, Top), Tabs(Relative(On)), Wrap(On, Width(480)));
+        Text(27, 257, "!(arrPendingOrders[9])", Face(On, Pen(color_negro_letras)), Backdrop(Off, Pen(color_vino_letras)), Focus(Off, Pen(15)), Shadow(Off, Softness(5)), Bevel(Off, Base(Pen(7)), Left(Pen(22)), Right(Pen(21)), Top(Pen(23)), Bottom(Pen(8))), AntiAlias(On), OnReplay(Replace), Under(Off, Thickness(3), Pen(6)), Font(maison_font_book, 38), UseCharHeight(On), Justify(Center, Top), Tabs(Relative(On)), Wrap(On, Width(480)));
+        Text(27, 295, "!(arrPendingOrders[11])", Face(On, Pen(color_negro_letras)), Backdrop(Off, Pen(color_vino_letras)), Focus(Off, Pen(15)), Shadow(Off, Softness(5)), Bevel(Off, Base(Pen(7)), Left(Pen(22)), Right(Pen(21)), Top(Pen(23)), Bottom(Pen(8))), AntiAlias(On), OnReplay(Replace), Under(Off, Thickness(3), Pen(6)), Font(maison_font_book, 38), UseCharHeight(On), Justify(Center, Top), Tabs(Relative(On)), Wrap(On, Width(1012)));
+        :"Titulo invitados"
+        Text(335, 34, "PARA RECOGER", Face(On, Pen(color_negro_letras)), Shadow(Off, Softness(5)), AntiAlias(On), OnReplay(Replace), Under(Off, Thickness(3)), Font(letter_font_tradicional, 64), UseCharHeight(On), Tabs(Relative(On)), Wrap(On, Width(1860)));
+        :"Invitados"
+        Text(332, 115, "!(arrCompletedOrders[0])", Face(On, Pen(color_negro_letras)), Backdrop(Off, Pen(color_vino_letras)), Focus(Off, Pen(15)), Shadow(Off, Softness(5)), Bevel(Off, Base(Pen(7)), Left(Pen(22)), Right(Pen(21)), Top(Pen(23)), Bottom(Pen(8))), AntiAlias(On), OnReplay(Replace), Under(Off, Thickness(3), Pen(6)), Font(maison_font_black, 33), UseCharHeight(On), Tabs(Relative(On)), Wrap(On, Width(655)));
+        Text(332, 161, "!(arrCompletedOrders[1])", Face(On, Pen(color_negro_letras)), Backdrop(Off, Pen(color_vino_letras)), Focus(Off, Pen(15)), Shadow(Off, Softness(5)), Bevel(Off, Base(Pen(7)), Left(Pen(22)), Right(Pen(21)), Top(Pen(23)), Bottom(Pen(8))), AntiAlias(On), OnReplay(Replace), Under(Off, Thickness(3), Pen(6)), Font(maison_font_black, 36), UseCharHeight(On), Tabs(Relative(On)), Wrap(On, Width(600)));
+        Text(332, 234, "!(arrCompletedOrders[2])", Face(On, Pen(color_negro_letras)), Backdrop(Off, Pen(color_vino_letras)), Focus(Off, Pen(15)), Shadow(Off, Softness(5)), Bevel(Off, Base(Pen(7)), Left(Pen(22)), Right(Pen(21)), Top(Pen(23)), Bottom(Pen(8))), AntiAlias(On), OnReplay(Replace), Under(Off, Thickness(3), Pen(6)), Font(maison_font_black, 33), UseCharHeight(On), Tabs(Relative(On)), Wrap(On, Width(655)));
+        Text(333, 276, "!(arrCompletedOrders[3])", Face(On, Pen(color_negro_letras)), Backdrop(Off, Pen(color_vino_letras)), Focus(Off, Pen(15)), Shadow(Off, Softness(5)), Bevel(Off, Base(Pen(7)), Left(Pen(22)), Right(Pen(21)), Top(Pen(23)), Bottom(Pen(8))), AntiAlias(On), OnReplay(Replace), Under(Off, Thickness(3), Pen(6)), Font(maison_font_black, 36), UseCharHeight(On), Tabs(Relative(On)), Wrap(On, Width(600)));
+        HardDuration(on_screen_time);
+    }
+}

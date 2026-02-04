@@ -1,0 +1,51 @@
+@startuml Estructura de Datos (Sistema Pickup)
+title Estructura de Datos (Sistema Pickup)
+
+package "Datos de Origen (API de Pedidos)" {
+  class OrdenAPI {
+    + id (orderId / preparationReference)
+    + customerName
+    + preparationStatus (Filtro: 5 = Completada)
+    + next (Booleano: Indica más páginas)
+  }
+}
+
+package "Procesamiento Python (cinemex-orders-script.py)" {
+  class ProcesadorOrdenes {
+    + Limite_Peticion (PENDING_ORDERS_LIMIT, COMPLETED_ORDERS_LIMIT)
+    + getOrders (Llamada HTTP autenticada)
+    + refreshToken / signIn
+    + flatten_orders (Aplanamiento a [Nombre, ID, Nombre, ID, ...])
+    + Relleno_Vacio (Asegura longitud fija de los arreglos)
+  }
+  
+  class ArregloAplanado {
+    + flat_orders_pendientes (Longitud fija 2*Límite)
+    + flat_orders_completadas (Longitud fija 2*Límite)
+  }
+}
+
+package "Variables de Despliegue (ScalaScript)" {
+  class VariablesCompartidas (svars) {
+    + arrPendingOrders[100]: Arreglo de String (Input para Scala)
+    + arrCompletedOrders[100]: Arreglo de String (Input para Scala)
+    + page_pending: Integer (Control de paginación)
+    + page_completed: Integer (Control de paginación)
+  }
+}
+
+package "Archivos de Persistencia" {
+  class ArchivosLocales {
+    + access.info (Token de Acceso y Refresco JWT)
+    + Logs (order_logs.txt)
+  }
+}
+
+' Flujo de datos'
+OrdenAPI --> ProcesadorOrdenes : Obtener y filtrar datos
+ProcesadorOrdenes --> ArregloAplanado : Transformación
+ProcesadorOrdenes --> ArchivosLocales : Guardar Token y Logs
+ArregloAplanado --> VariablesCompartidas : Inyección de datos (svars.arr...)
+VariablesCompartidas --> ProcesadorOrdenes : Paginación (svars.page...)
+
+@enduml

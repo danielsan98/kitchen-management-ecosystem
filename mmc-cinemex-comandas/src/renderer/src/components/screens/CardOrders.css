@@ -1,0 +1,37 @@
+.card-postit {
+  background-color: #FFFFCC; /* Amarillo claro */
+}
+
+.masonry-container {
+  column-count: 5; /* Ajusta el número de columnas según el tamaño de pantalla */
+  column-gap: 0.5rem;
+}
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 1400px) {
+  .masonry-container {
+    column-count: 4;
+  }
+}
+
+@media (max-width: 992px) {
+  .masonry-container {
+    column-count: 3;
+  }
+}
+
+@media (max-width: 768px) {
+  .masonry-container {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 576px) {
+  .masonry-container {
+    column-count: 1;
+  }
+}

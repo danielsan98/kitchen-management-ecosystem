@@ -1,0 +1,63 @@
+﻿!ScalaScript1105
+// Saved by Diseñador Scala Versión 11.05.00 at 2025-06-24 16:32:05
+:"cinemex_pedidos.sca"
+{
+  Group:
+    String(arrOrders[100], letter_font_platino_bold, letter_font_platino_medium, url_fondo_platino_2p, url_fondo_market, letter_font_tradicional("MaisonNeue-Black (Western [<Maison Neue Black> 900])"), url_fondo_tradicional);
+    Integer(iTotalPreparacion, iTotalCompletadas, color_rojo, color_blanco, color_negro, color_verde, color_rosa, color_verde_letras, page(1), on_screen_time);
+    BackgroundSettings(Size(540, 344));
+  Sequence:
+    :"set initial values"
+    {
+      Sequence:
+        on_screen_time = 5000;
+        letter_font_tradicional = "VVDSFifties-SExpBold (Western [<VVDS Fifties SExp Bold> 700])";
+        letter_font_platino_bold = "NeueMontreal-Bold (Western [<Neue Montreal> 700])";
+        letter_font_platino_medium = "NeueMontreal-Medium (Western [<Neue Montreal> 500])";
+        color_negro = 1;
+        color_blanco = 2;
+        color_verde = 3;
+        color_rojo = 4;
+        color_rosa = 5;
+        color_verde_letras = 6;
+        url_fondo_tradicional = "C:\ProgramData\Scala\InfoChannel Player 5\Content\marquesina\posters\bg_2720_tradicional[78774221000].png";
+        url_fondo_platino_2p = "C:\Users\Oscar Daniel\Downloads\pedidos_fondo_platino_merged.png";
+        url_fondo_market = "C:\Users\Oscar Daniel\Downloads\pedidos_fondo_platino_market.png";
+    }
+    :"get orders"
+    {
+      Sequence:
+        WindowsScript("scripts\cinemex-orders-script.py", Wait(On), Engine("Python.AXScript.2"), ShareVariable(arrOrders), ShareVariable(page));
+    }
+    :"Display info"
+    {
+      Group:
+        :"Fondo"
+        Picture("C:\Users\Oscar Daniel\Downloads\bg_orders.png", Backdrop(Pen(20)), Margin(10, 10, 0, 0), UserPalette(RGBPen(1, $0, $ffffff, $9929, $e11b2b, $ff5f95, $afeda4, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa, $777777, $bbbbbb, $dddddd, $465a96)), AutoScale(FillAndTrim), Thumbnail(On), Operation(On));
+        :"Titulo ordenes"
+        Text(15, 28, "PREPARACIÓN", Face(On, Pen(color_verde_letras)), Shadow(Off, Softness(5)), AntiAlias(On), OnReplay(Replace), Under(Off, Thickness(3)), Font(letter_font_tradicional, 35), UseCharHeight(On), Tabs(Relative(On)), Wrap(On, Width(1608)));
+        :"Ordenes"
+        Text(34, 74, "!(arrOrders[0])", Face(On, Pen(6)), Backdrop(Off, Pen(color_verde_letras)), Focus(Off, Pen(15)), Shadow(Off, Softness(5)), Bevel(Off, Base(Pen(7)), Left(Pen(22)), Right(Pen(21)), Top(Pen(23)), Bottom(Pen(8))), AntiAlias(On), OnReplay(Replace), Under(Off, Thickness(3), Pen(6)), Font(letter_font_tradicional, 25), UseCharHeight(On), Justify(Center, Top), Tabs(Relative(On)), Wrap(On, Width(480)));
+        :"_TempName1"
+        Text(34, 126, "!(arrOrders[3])", Face(On, Pen(6)), Backdrop(Off, Pen(color_verde_letras)), Focus(Off, Pen(15)), Shadow(Off, Softness(5)), Bevel(Off, Base(Pen(7)), Left(Pen(22)), Right(Pen(21)), Top(Pen(23)), Bottom(Pen(8))), AntiAlias(On), OnReplay(Replace), Under(Off, Thickness(3), Pen(6)), Font(letter_font_tradicional, 25), UseCharHeight(On), Justify(Center, Top), Tabs(Relative(On)), Wrap(On, Width(352)));
+        :"_TempName2"
+        Text(34, 177, "!(arrOrders[6])", Face(On, Pen(6)), Backdrop(Off, Pen(color_verde_letras)), Focus(Off, Pen(15)), Shadow(Off, Softness(5)), Bevel(Off, Base(Pen(7)), Left(Pen(22)), Right(Pen(21)), Top(Pen(23)), Bottom(Pen(8))), AntiAlias(On), OnReplay(Replace), Under(Off, Thickness(3), Pen(6)), Font(letter_font_tradicional, 25), UseCharHeight(On), Justify(Center, Top), Tabs(Relative(On)), Wrap(On, Width(480)));
+        :"_TempName3"
+        Text(34, 230, "!(arrOrders[9])", Face(On, Pen(6)), Backdrop(Off, Pen(color_verde_letras)), Focus(Off, Pen(15)), Shadow(Off, Softness(5)), Bevel(Off, Base(Pen(7)), Left(Pen(22)), Right(Pen(21)), Top(Pen(23)), Bottom(Pen(8))), AntiAlias(On), OnReplay(Replace), Under(Off, Thickness(3), Pen(6)), Font(letter_font_tradicional, 25), UseCharHeight(On), Justify(Center, Top), Tabs(Relative(On)), Wrap(On, Width(480)));
+        :"_TempName4"
+        Text(34, 282, "!(arrOrders[12])", Face(On, Pen(6)), Backdrop(Off, Pen(color_verde_letras)), Focus(Off, Pen(15)), Shadow(Off, Softness(5)), Bevel(Off, Base(Pen(7)), Left(Pen(22)), Right(Pen(21)), Top(Pen(23)), Bottom(Pen(8))), AntiAlias(On), OnReplay(Replace), Under(Off, Thickness(3), Pen(6)), Font(letter_font_tradicional, 25), UseCharHeight(On), Justify(Center, Top), Tabs(Relative(On)), Wrap(On, Width(480)));
+        :"Titulo invitados"
+        Text(326, 30, "PICK UP", Face(On, Pen(color_verde_letras)), Shadow(Off, Softness(5)), AntiAlias(On), OnReplay(Replace), Under(Off, Thickness(3)), Font(letter_font_tradicional, 35), UseCharHeight(On), Tabs(Relative(On)), Wrap(On, Width(1860)));
+        :"Invitados"
+        Text(314, 75, "!(arrOrders[1])", Face(On, Pen(6)), Backdrop(Off, Pen(color_verde_letras)), Focus(Off, Pen(15)), Shadow(Off, Softness(5)), Bevel(Off, Base(Pen(7)), Left(Pen(22)), Right(Pen(21)), Top(Pen(23)), Bottom(Pen(8))), AntiAlias(On), OnReplay(Replace), Under(Off, Thickness(3), Pen(6)), Font(letter_font_tradicional, 25), UseCharHeight(On), Tabs(Relative(On)), Wrap(On, Width(480)));
+        :"_TempName5"
+        Text(314, 127, "!(arrOrders[4])", Face(On, Pen(6)), Backdrop(Off, Pen(color_verde_letras)), Focus(Off, Pen(15)), Shadow(Off, Softness(5)), Bevel(Off, Base(Pen(7)), Left(Pen(22)), Right(Pen(21)), Top(Pen(23)), Bottom(Pen(8))), AntiAlias(On), OnReplay(Replace), Under(Off, Thickness(3), Pen(6)), Font(letter_font_tradicional, 25), UseCharHeight(On), Tabs(Relative(On)), Wrap(On, Width(352)));
+        :"_TempName6"
+        Text(314, 178, "!(arrOrders[7])", Face(On, Pen(6)), Backdrop(Off, Pen(color_verde_letras)), Focus(Off, Pen(15)), Shadow(Off, Softness(5)), Bevel(Off, Base(Pen(7)), Left(Pen(22)), Right(Pen(21)), Top(Pen(23)), Bottom(Pen(8))), AntiAlias(On), OnReplay(Replace), Under(Off, Thickness(3), Pen(6)), Font(letter_font_tradicional, 25), UseCharHeight(On), Tabs(Relative(On)), Wrap(On, Width(480)));
+        :"_TempName7"
+        Text(314, 231, "!(arrOrders[10])", Face(On, Pen(6)), Backdrop(Off, Pen(color_verde_letras)), Focus(Off, Pen(15)), Shadow(Off, Softness(5)), Bevel(Off, Base(Pen(7)), Left(Pen(22)), Right(Pen(21)), Top(Pen(23)), Bottom(Pen(8))), AntiAlias(On), OnReplay(Replace), Under(Off, Thickness(3), Pen(6)), Font(letter_font_tradicional, 25), UseCharHeight(On), Tabs(Relative(On)), Wrap(On, Width(480)));
+        :"_TempName8"
+        Text(314, 283, "!(arrOrders[13])", Face(On, Pen(6)), Backdrop(Off, Pen(color_verde_letras)), Focus(Off, Pen(15)), Shadow(Off, Softness(5)), Bevel(Off, Base(Pen(7)), Left(Pen(22)), Right(Pen(21)), Top(Pen(23)), Bottom(Pen(8))), AntiAlias(On), OnReplay(Replace), Under(Off, Thickness(3), Pen(6)), Font(letter_font_tradicional, 25), UseCharHeight(On), Tabs(Relative(On)), Wrap(On, Width(480)));
+        HardDuration(on_screen_time);
+    }
+}

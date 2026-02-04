@@ -1,0 +1,84 @@
+@startuml Estructura de Datos KDS
+
+title Estructura de Datos y Entidades KDS
+
+' Paquetes para agrupar las capas de la aplicación
+package "API (Backend NestJS)" {
+    
+    class ItemService {
+        + updateCompletedQuantity(transId, completedQuantity): Promise<UpdateResult | Item>
+    }
+    
+    class ItemController {
+        + PATCH item/update-completed-quantity
+    }
+    
+    ItemController -- ItemService : usa
+}
+
+package "Persistencia (TypeORM Entities)" {
+    
+    enum PreparationStatusEnum {
+        PENDIENTE = 2
+        COMPLETADO = 5
+        ...
+    }
+    
+    class Order {
+        + id: string <<PrimaryColumn>>
+        + preparationStatus: PreparationStatusEnum
+        + isVIP: boolean
+        -- Relación --
+        + orderItems: Item[] <<OneToMany>>
+    }
+
+    class Item {
+        + id: number <<PrimaryGeneratedColumn>>
+        + transId: number <<Column>>
+        + quantity: number <<Column>>
+        + completedQuantity: number <<Column, default=0>>
+        + preparationStatus: PreparationStatusEnum
+        + name: string
+        -- Relación --
+        + order: Order <<ManyToOne>>
+    }
+
+    ItemService ..> Item : consulta/actualiza
+    Order "1" o-- "*" Item : contiene
+}
+
+package "Frontend (React Components)" {
+    
+    class App.tsx {
+        - ordersData: Order[] <<useState>>
+        + handleUpdateOrders(transId, newQty)
+        -- Lógica --
+        * Actualización Optimista
+        * Aplicación de Filtros
+    }
+    
+    class CardOrders.tsx {
+        + data: OrderInterface[]
+        -- Lógica --
+        * Renderizado de tarjeta
+        * Lógica visual (borde danger/info/primary)
+        * Handler click item
+    }
+
+    class ProductOptionsMenu.tsx {
+        + product: Item
+        + token: string
+        + onClose()
+        + onItemClosed(transId)
+        -- Handlers --
+        - handleSaveChanges() <<Llama a API>>
+        - setNewCompletedQuantity()
+    }
+
+    App.tsx -- CardOrders.tsx : renderiza
+    CardOrders.tsx --> ProductOptionsMenu.tsx : prop onClick
+    ProductOptionsMenu.tsx ..> ItemController : Llama a PATCH
+    ProductOptionsMenu.tsx ..> App.tsx : Notifica onItemClosed (Optimista)
+}
+
+@enduml

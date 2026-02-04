@@ -1,0 +1,13 @@
+﻿!ScalaScript1105
+// Saved by Diseñador Scala Versión 11.05.00 at 2025-08-12 13:29:00
+:"mockup.sca"
+{
+  Group:
+    BackgroundSettings(Size(1360, 768));
+  Sequence:
+    {
+      Group:
+        :"_TempName1"
+        Display(Backdrop(Pen(20)), Margin(10, 10, 0, 0), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa, $777777, $bbbbbb, $dddddd, $465a96)), Thumbnail(On));
+    }
+}

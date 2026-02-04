@@ -1,0 +1,64 @@
+@startuml Flujo de Ejecución (Sistema Pickup)
+title Flujo de Ejecución (Sistema Pickup)
+
+start
+
+:Inicialización;
+:Cargar metadatos desde el reproductor Scala;
+:Definir paths (logs, token, órdenes);
+:Verificar/crear directorio 'pickup';
+
+partition "Autenticación" {
+  :Cargar credenciales y Token JWT;
+
+  if (¿Existe access.info?) then (Sí)
+    :Decodificar JWT;
+    if (¿Token Expirado?) then (Sí)
+      :Llamar a refreshToken;
+      if (¿Refresh Exitoso?) then (No)
+        :Intentar signIn (Autenticación Completa);
+      endif
+    endif
+  else (No)
+    :Llamar a signIn (Autenticación Completa);
+  endif
+  :Guardar nuevo Token y Refresh Token en access.info;
+}
+
+partition "Obtención y Procesamiento de Órdenes" {
+  :Obtener página actual de Órdenes Pendientes (svars.page_pending);
+  :Obtener Órdenes Pendientes (preparationStatus != 5) de la API (Página N, Límite 6);
+
+  :Obtener página actual de Órdenes Completadas (svars.page_completed);
+  :Obtener Órdenes Completadas (preparationStatus = 5) de la API (Página N, Límite 6);
+
+  :Verificar Paginación Pendientes;
+  if (¿API indica "next"?) then (Sí)
+    :Incrementar svars.page_pending;
+  else (No)
+    :Reiniciar svars.page_pending = 1;
+  endif
+
+  :Verificar Paginación Completadas;
+  if (¿API indica "next"?) then (Sí)
+    :Incrementar svars.page_completed;
+  else (No)
+    :Reiniciar svars.page_completed = 1;
+  endif
+  
+  :Aplanar Órdenes Pendientes (flatten_orders);
+  :Rellenar arreglo con campos vacíos hasta el límite (12 elementos);
+  
+  :Aplanar Órdenes Completadas (flatten_orders);
+  :Rellenar arreglo con campos vacíos hasta el límite (12 elementos);
+}
+
+:Inyectar flat_orders_pendientes en svars.arrPendingOrders;
+:Inyectar flat_orders_completadas en svars.arrCompletedOrders;
+
+:Guardar archivo de registro de flat_orders;
+:Finalizar script;
+
+stop
+
+@enduml

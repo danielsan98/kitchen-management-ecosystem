@@ -1,0 +1,38 @@
+@startuml Subproceso: Determinación de Estilo KDS
+title Subproceso: Lógica de Determinación Visual de Orden
+
+start
+
+partition "Componente CardOrders.tsx" {
+  :Inicio de iteración: Mapear Órdenes;
+  
+  :Calcular Estado Clave:
+  Set isCompleted = (order.preparationStatus == 5);
+  Set isAlerted = (order.isDelayed AND NOT isCompleted);
+  note right: El estado "Completada" anula la alerta.
+
+  if (isCompleted) then (Prioridad 1: Completada)
+    :Establecer cardBorder = "info" (Azul Claro);
+    :Ícono de Alerta: Oculto;
+    note right: Estado final de éxito.
+  else (Aún Pendiente)
+    if (isAlerted) then (Prioridad 2: Retrasada)
+      :Establecer cardBorder = "danger" (Rojo);
+      :Ícono de Alerta: Visible;
+      note right: Requiere atención inmediata.
+    else (Prioridad 3: Normal)
+      :Establecer cardBorder = "primary" (Azul);
+      :Ícono de Alerta: Oculto;
+      note right: En progreso normal.
+    endif
+  endif
+
+  :Renderizar componente Card
+  con cardBorder y visibilidad de íconos;
+  
+  :Fin de iteración;
+}
+
+stop
+
+@enduml

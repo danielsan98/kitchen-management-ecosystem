@@ -1,0 +1,10 @@
+{
+    "translation": {
+        "langLabel": "Select language",
+        "kitchen": "kitchen",
+        "sausages": "sausages",
+        "salads": "salads",
+        "pendingOrders": "Pending orders",
+        "alertedOrders": "Alerted orders"
+    }
+}

@@ -1,0 +1,54 @@
+@startuml Flujo de Actualización Optimista (KDS)
+title Flujo de Cierre de Ítem (Actualización Optimista)
+
+start
+
+partition "Frontend (App.tsx / ProductOptionsMenu.tsx)" {
+    :Usuario hace click en un ítem de la orden (CardOrders.tsx);
+    :Modal ProductOptionsMenu se abre;
+    :Usuario modifica o cierra el ítem (newCompletedQuantity);
+    
+    :Llamar API PATCH: item/update-completed-quantity;
+    note right: (Asíncrono) Se envía transId y newCompletedQuantity
+    
+    fork
+        partition "Ruta Optimista (Immediate UI Update)" {
+            :Ejecutar callback de éxito (onItemClosed);
+            :App.tsx actualiza el estado local (ordersData) con newCompletedQuantity;
+            
+            if (¿Todos los ítems de la orden están completos?) then (Sí)
+                :Set order.preparationStatus = 5 (Completada);
+                :Renderizar CardOrders: Borde AZUL (info) y ocultar ícono de alerta;
+            else (No)
+                :Renderizar CardOrders: Actualizar contador de ítem (X/Y);
+            endif
+        }
+    fork again
+        partition "Ruta Backend (Persistencia y Coherencia)" {
+            :API Gateway recibe PATCH request;
+            :ItemService.updateCompletedQuantity se ejecuta;
+            
+            if (completedQuantity == item.quantity) then (Item Cerrado)
+                :Set item.preparationStatus = 5;
+            endif
+            
+            :Guardar cambios en DB;
+            note right: Persistencia garantizada
+            
+            :Enviar respuesta exitosa al Frontend;
+        }
+    end fork
+}
+
+partition "Mecanismo de Sincronización (CRON)" {
+    repeat
+        :CRON de Backend consulta órdenes activas de DB;
+        :Enviar lista de órdenes (incluyendo cambios persistidos) a Electron;
+        :Electron actualiza órdenesData en App.tsx;
+        note right: Confirma el estado final de la actualización optimista.
+    repeat while (Cada 60 segundos)
+}
+
+stop
+
+@enduml

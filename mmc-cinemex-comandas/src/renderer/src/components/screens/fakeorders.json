@@ -1,0 +1,502 @@
+[
+    {   
+        "id": 16482,
+        "date": "2025-01-09T09:00:00.000Z",
+        "customer": "John Doe",
+        "completed": false,
+        "products": [
+            {
+                "id": 1,
+                "name": "Combo Pareja",
+                "quantity": 2,
+                "price": 10.99,
+                "prepared": false,
+                "prepared_time": 480,
+                "category": "kitchen",
+                "comment": ""
+            },
+            {
+                "id": 2,
+                "name": "Chapata de Pollo",
+                "quantity": 1,
+                "price": 19.99,
+                "prepared": false,
+                "prepared_time": 600,
+                "category": "kitchen",
+                "comment": "Sin cebolla"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "date": "2025-01-09T09:00:00.000Z",
+        "customer": "Jane Smith",
+        "completed": false,
+        "products": [
+            {
+                "id": 3,
+                "name": "Rebanada de Pizza Hawaiana",
+                "quantity": 3,
+                "price": 29.99,
+                "prepared": true,
+                "prepared_time": 300,
+                "category": "kitchen",
+                "comment": ""
+            },
+            {
+                "id": 4,
+                "name": "Ensalada Ceasar",
+                "quantity": 2,
+                "price": 39.99,
+                "prepared": false,
+                "prepared_time": 600,
+                "category": "salads",
+                "comment": "Sin cebolla"
+            },
+            {
+                "id": 5,
+                "name": "Papas Fritas",
+                "comment": "Extra queso",
+                "quantity": 1,
+                "price": 30.99,
+                "prepared": true,
+                "prepared_time": 600,
+                "category": "kitchen"
+            }
+        ]
+    },
+    {   
+        "id": 1,
+        "date": "2025-01-09T09:00:00.000Z",
+        "customer": "John Doe",
+        "completed": false,
+        "products": [
+            {
+                "id": 1,
+                "name": "Combo Pareja",
+                "quantity": 2,
+                "price": 10.99,
+                "prepared": false,
+                "prepared_time": 480,
+                "category": "kitchen",
+                "comment": ""
+            },
+            {
+                "id": 2,
+                "name": "Chapata de Pollo",
+                "quantity": 1,
+                "price": 19.99,
+                "prepared": false,
+                "prepared_time": 600,
+                "category": "kitchen",
+                "comment": "Sin cebolla"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "date": "2025-01-09T09:00:00.000Z",
+        "customer": "Jane Smith",
+        "completed": false,
+        "products": [
+            {
+                "id": 3,
+                "name": "Rebanada de Pizza Hawaiana",
+                "quantity": 3,
+                "price": 29.99,
+                "prepared": true,
+                "prepared_time": 300,
+                "category": "kitchen",
+                "comment": ""
+            },
+            {
+                "id": 4,
+                "name": "Ensalada Ceasar",
+                "quantity": 2,
+                "price": 39.99,
+                "prepared": false,
+                "prepared_time": 600,
+                "category": "salads",
+                "comment": "Sin cebolla"
+            },
+            {
+                "id": 5,
+                "name": "Papas Fritas",
+                "comment": "Extra queso",
+                "quantity": 1,
+                "price": 30.99,
+                "prepared": true,
+                "prepared_time": 600,
+                "category": "kitchen"
+            }
+        ]
+    },
+    {   
+        "id": 1,
+        "date": "2025-01-09T09:00:00.000Z",
+        "customer": "John Doe",
+        "completed": false,
+        "products": [
+            {
+                "id": 1,
+                "name": "Combo Pareja",
+                "quantity": 2,
+                "price": 10.99,
+                "prepared": false,
+                "prepared_time": 480,
+                "category": "kitchen",
+                "comment": ""
+            },
+            {
+                "id": 2,
+                "name": "Chapata de Pollo",
+                "quantity": 1,
+                "price": 19.99,
+                "prepared": false,
+                "prepared_time": 600,
+                "category": "kitchen",
+                "comment": "Sin cebolla"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "date": "2025-01-09T09:00:00.000Z",
+        "customer": "Jane Smith",
+        "completed": false,
+        "products": [
+            {
+                "id": 3,
+                "name": "Rebanada de Pizza Hawaiana",
+                "quantity": 3,
+                "price": 29.99,
+                "prepared": true,
+                "prepared_time": 300,
+                "category": "kitchen",
+                "comment": ""
+            },
+            {
+                "id": 4,
+                "name": "Ensalada Ceasar",
+                "quantity": 2,
+                "price": 39.99,
+                "prepared": false,
+                "prepared_time": 600,
+                "category": "salads",
+                "comment": "Sin cebolla"
+            },
+            {
+                "id": 5,
+                "name": "Papas Fritas",
+                "comment": "Extra queso",
+                "quantity": 1,
+                "price": 30.99,
+                "prepared": true,
+                "prepared_time": 600,
+                "category": "kitchen"
+            }
+        ]
+    },
+    {   
+        "id": 1,
+        "date": "2025-01-09T09:00:00.000Z",
+        "customer": "John Doe",
+        "completed": false,
+        "products": [
+            {
+                "id": 1,
+                "name": "Combo Pareja",
+                "quantity": 2,
+                "price": 10.99,
+                "prepared": false,
+                "prepared_time": 480,
+                "category": "kitchen",
+                "comment": ""
+            },
+            {
+                "id": 2,
+                "name": "Chapata de Pollo",
+                "quantity": 1,
+                "price": 19.99,
+                "prepared": false,
+                "prepared_time": 600,
+                "category": "kitchen",
+                "comment": "Sin cebolla"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "date": "2025-01-09T09:00:00.000Z",
+        "customer": "Jane Smith",
+        "completed": false,
+        "products": [
+            {
+                "id": 3,
+                "name": "Rebanada de Pizza Hawaiana",
+                "quantity": 3,
+                "price": 29.99,
+                "prepared": true,
+                "prepared_time": 300,
+                "category": "kitchen",
+                "comment": ""
+            },
+            {
+                "id": 4,
+                "name": "Ensalada Ceasar",
+                "quantity": 2,
+                "price": 39.99,
+                "prepared": false,
+                "prepared_time": 600,
+                "category": "salads",
+                "comment": "Sin cebolla"
+            },
+            {
+                "id": 5,
+                "name": "Papas Fritas",
+                "comment": "Extra queso",
+                "quantity": 1,
+                "price": 30.99,
+                "prepared": true,
+                "prepared_time": 600,
+                "category": "kitchen"
+            }
+        ]
+    },
+    {   
+        "id": 1,
+        "date": "2025-01-09T09:00:00.000Z",
+        "customer": "John Doe",
+        "completed": false,
+        "products": [
+            {
+                "id": 1,
+                "name": "Combo Pareja",
+                "quantity": 2,
+                "price": 10.99,
+                "prepared": false,
+                "prepared_time": 480,
+                "category": "kitchen",
+                "comment": ""
+            },
+            {
+                "id": 2,
+                "name": "Chapata de Pollo",
+                "quantity": 1,
+                "price": 19.99,
+                "prepared": false,
+                "prepared_time": 600,
+                "category": "kitchen",
+                "comment": "Sin cebolla"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "date": "2025-01-09T09:00:00.000Z",
+        "customer": "Jane Smith",
+        "completed": false,
+        "products": [
+            {
+                "id": 3,
+                "name": "Rebanada de Pizza Hawaiana",
+                "quantity": 3,
+                "price": 29.99,
+                "prepared": true,
+                "prepared_time": 300,
+                "category": "kitchen",
+                "comment": ""
+            },
+            {
+                "id": 4,
+                "name": "Ensalada Ceasar",
+                "quantity": 2,
+                "price": 39.99,
+                "prepared": false,
+                "prepared_time": 600,
+                "category": "salads",
+                "comment": "Sin cebolla"
+            },
+            {
+                "id": 5,
+                "name": "Papas Fritas",
+                "comment": "Extra queso",
+                "quantity": 1,
+                "price": 30.99,
+                "prepared": true,
+                "prepared_time": 600,
+                "category": "kitchen"
+            }
+        ]
+    },
+    {   
+        "id": 1,
+        "date": "2025-01-09T09:00:00.000Z",
+        "customer": "John Doe",
+        "completed": false,
+        "products": [
+            {
+                "id": 1,
+                "name": "Combo Pareja",
+                "quantity": 2,
+                "price": 10.99,
+                "prepared": false,
+                "prepared_time": 480,
+                "category": "kitchen",
+                "comment": ""
+            },
+            {
+                "id": 2,
+                "name": "Chapata de Pollo",
+                "quantity": 1,
+                "price": 19.99,
+                "prepared": false,
+                "prepared_time": 600,
+                "category": "kitchen",
+                "comment": "Sin cebolla"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "date": "2025-01-09T09:00:00.000Z",
+        "customer": "Jane Smith",
+        "completed": false,
+        "products": [
+            {
+                "id": 3,
+                "name": "Rebanada de Pizza Hawaiana",
+                "quantity": 3,
+                "price": 29.99,
+                "prepared": true,
+                "prepared_time": 300,
+                "category": "kitchen",
+                "comment": ""
+            },
+            {
+                "id": 4,
+                "name": "Ensalada Ceasar",
+                "quantity": 2,
+                "price": 39.99,
+                "prepared": false,
+                "prepared_time": 600,
+                "category": "salads",
+                "comment": "Sin cebolla"
+            },
+            {
+                "id": 5,
+                "name": "Papas Fritas",
+                "comment": "Extra queso",
+                "quantity": 1,
+                "price": 30.99,
+                "prepared": true,
+                "prepared_time": 600,
+                "category": "kitchen"
+            }
+        ]
+    },
+    {   
+        "id": 1,
+        "date": "2025-01-09T09:00:00.000Z",
+        "customer": "John Doe",
+        "completed": false,
+        "products": [
+            {
+                "id": 1,
+                "name": "Combo Pareja",
+                "quantity": 2,
+                "price": 10.99,
+                "prepared": false,
+                "prepared_time": 480,
+                "category": "kitchen",
+                "comment": ""
+            },
+            {
+                "id": 2,
+                "name": "Chapata de Pollo",
+                "quantity": 1,
+                "price": 19.99,
+                "prepared": false,
+                "prepared_time": 600,
+                "category": "kitchen",
+                "comment": "Sin cebolla"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "date": "2025-01-09T09:00:00.000Z",
+        "customer": "Jane Smith",
+        "completed": false,
+        "products": [
+            {
+                "id": 3,
+                "name": "Rebanada de Pizza Hawaiana",
+                "quantity": 3,
+                "price": 29.99,
+                "prepared": true,
+                "prepared_time": 300,
+                "category": "kitchen",
+                "comment": ""
+            },
+            {
+                "id": 4,
+                "name": "Ensalada Ceasar",
+                "quantity": 2,
+                "price": 39.99,
+                "prepared": false,
+                "prepared_time": 600,
+                "category": "salads",
+                "comment": "Sin cebolla"
+            },
+            {
+                "id": 5,
+                "name": "Papas Fritas",
+                "comment": "Extra queso",
+                "quantity": 1,
+                "price": 30.99,
+                "prepared": true,
+                "prepared_time": 600,
+                "category": "kitchen"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "date": "2025-01-09T10:20:00.000Z",
+        "customer": "Bob Johnson",
+        "completed": true,
+        "products": [
+            {
+                "id": 5,
+                "name": "Sandwich de Jamón y Queso",
+                "comment": "Sin cebolla",
+                "quantity": 1,
+                "price": 9.99,
+                "prepared": true,
+                "prepared_time": 600,
+                "category": "kitchen"
+            },
+            {
+                "id": 6,
+                "name": "Hamburguesa de Carne",
+                "quantity": 2,
+                "price": 14.99,
+                "prepared": true,
+                "prepared_time": 900,
+                "category": "kitchen",
+                "comment": ""
+            },
+            {
+                "id": 7,
+                "name": "Ensalada Ceasar",
+                "quantity": 3,
+                "price": 59.98,
+                "prepared": true,
+                "prepared_time": 900,
+                "category": "salads",
+                "comment": ""
+            }
+        ]
+    }
+]
