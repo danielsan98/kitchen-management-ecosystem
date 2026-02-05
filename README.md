@@ -34,6 +34,9 @@ Se implementó un esquema relacional en **PostgreSQL** diseñado para mantener l
 - Python 3.x
 - PostgreSQL 14+
 
+### Colección de Postman
+- Se incluye una colección de Postman en la carpeta /postman para visualizar los endpoints, payloads y la documentación de la API.
+
 ### Configuración Rápida
 1. Clonar el repo: `git clone https://github.com/danielsan98/kitchen-management-ecosystem.git`
 2. Configurar variables de entorno: Crear un `.env` en `/api-nest-js` siguiendo el `.env.example`.
