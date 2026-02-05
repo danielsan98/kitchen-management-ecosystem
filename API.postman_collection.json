@@ -1,0 +1,525 @@
+{
+  "info": {
+    "_postman_id": "cd8f7216-8d6e-4315-8077-1d137c099c47",
+    "name": "Cinemex - PickUp API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "36605540"
+  },
+  "item": [
+    {
+      "name": "Login",
+      "item": [
+        {
+          "name": "Singin",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "let jsonData = pm.response.json();\r",
+                  "let token = jsonData.access_token;\r",
+                  "let refresh_token = jsonData.refresh_token;\r",
+                  " \r",
+                  "pm.environment.set(\"access_token\", token);\r",
+                  "pm.environment.set(\"refresh_token\", refresh_token);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Refresh Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "let jsonData = pm.response.json();\r",
+                  "let token = jsonData.access_token;\r",
+                  "let refresh_token = jsonData.refresh_token;\r",
+                  " \r",
+                  "pm.environment.set(\"access_token\", token);\r",
+                  "pm.environment.set(\"refresh_token\", refresh_token);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"refreshToken\": \"{{refresh_token}}\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/refresh-token",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "refresh-token"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Orders",
+      "item": [
+        {
+          "name": "Test",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/order/test",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "order",
+                "test"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "fetchAllOrders",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/order/fetch-all-orders?hostname=D-2PROA1&ip=10.55.55.87&port=9201&playerUser=AdminA1&playerPass=Tgh7gjGCGH",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "order",
+                "fetch-all-orders"
+              ],
+              "query": [
+                {
+                  "key": "hostname",
+                  "value": "D-2PROA1"
+                },
+                {
+                  "key": "minutes",
+                  "value": "630",
+                  "disabled": true
+                },
+                {
+                  "key": "ip",
+                  "value": "10.55.55.87"
+                },
+                {
+                  "key": "port",
+                  "value": "9201"
+                },
+                {
+                  "key": "playerUser",
+                  "value": "AdminA1"
+                },
+                {
+                  "key": "playerPass",
+                  "value": "Tgh7gjGCGH"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Orders",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://10.4.0.169:5001/api/order/get-orders?preparationStatus=2&page=1&playerIp=10.100.95.20&playerUser=AdminA1&playerPass=Tgh7gjGCGH&port=9201&hostname=D-2PROA1&limit=6",
+              "protocol": "http",
+              "host": [
+                "10",
+                "4",
+                "0",
+                "169"
+              ],
+              "port": "5001",
+              "path": [
+                "api",
+                "order",
+                "get-orders"
+              ],
+              "query": [
+                {
+                  "key": "preparationStatus",
+                  "value": "2"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "playerIp",
+                  "value": "10.100.95.20"
+                },
+                {
+                  "key": "playerUser",
+                  "value": "AdminA1"
+                },
+                {
+                  "key": "playerPass",
+                  "value": "Tgh7gjGCGH"
+                },
+                {
+                  "key": "port",
+                  "value": "9201"
+                },
+                {
+                  "key": "hostname",
+                  "value": "D-2PROA1"
+                },
+                {
+                  "key": "limit",
+                  "value": "6"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetOrdersFromCinemexAPI",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/order/get-orders-from-api?admitOneServer=10.55.55.87&port=9201&playerUser=AdminA1&playerPass=Tgh7gjGCGH&hostname=D-2PROA1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "order",
+                "get-orders-from-api"
+              ],
+              "query": [
+                {
+                  "key": "admitOneServer",
+                  "value": "10.55.55.87"
+                },
+                {
+                  "key": "port",
+                  "value": "9201"
+                },
+                {
+                  "key": "playerUser",
+                  "value": "AdminA1"
+                },
+                {
+                  "key": "playerPass",
+                  "value": "Tgh7gjGCGH"
+                },
+                {
+                  "key": "hostname",
+                  "value": "D-2PROA1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Orders by Branch",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"productName\": \"PLATINO REFRESCO GRANDE JOYA\",\r\n    \"description\": \"Refresco grande\",\r\n    \"workZone\": \"Dulceria\",\r\n    \"category\": \"Bebida\",\r\n    \"prepTime\": 5,\r\n    \"minPrepTime\": 3,\r\n    \"maxPrepTime\": 7\r\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/order/get-orders-by-branch?hostname=D-2PROA1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "order",
+                "get-orders-by-branch"
+              ],
+              "query": [
+                {
+                  "key": "hostname",
+                  "value": "D-2PROA1"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Branches",
+      "item": [
+        {
+          "name": "Create - Branch",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"hostname\": \"GSUTAQ04\",\r\n    \"admitOneServer\": \"10.100.95.20\",\r\n    \"user\": \"AdminA1\",\r\n    \"password\": \"Tgh7gjGCGH\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/branch",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "branch"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Find All - Branches",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/branch",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "branch"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Items",
+      "item": [
+        {
+          "name": "update-completed-items",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/item/update-completed-quantity?transId=65158&completedQuantity=0",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "item",
+                "update-completed-quantity"
+              ],
+              "query": [
+                {
+                  "key": "transId",
+                  "value": "65158"
+                },
+                {
+                  "key": "completedQuantity",
+                  "value": "0"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Clients",
+      "item": [
+        {
+          "name": "Register Client",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"IP\": \"123.456.678\",\r\n    \"hostname\": \"ABC\",\r\n    \"lastConnection\": \"2025-10-24T20:05:32.000Z\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/clients/registerClient",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "clients",
+                "registerClient"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetClients",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"IP\": \"123.456.678\",\r\n    \"hostname\": \"ABC\",\r\n    \"lastConnection\": \"2025-10-24T20:05:32.000Z\"\r\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/clients/getClients",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "clients",
+                "getClients"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Product",
+      "item": [
+        {
+          "name": "Create - Product",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"productName\": \"PLATINO AGUA MINERAL 2019\",\r\n    \"description\": \"Agua mineral\",\r\n    \"workZone\": \"Dulceria\",\r\n    \"category\": \"Bebida\",\r\n    \"prepTime\": 5,\r\n    \"minPrepTime\": 3,\r\n    \"maxPrepTime\": 7\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/product/createProduct",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "product",
+                "createProduct"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
