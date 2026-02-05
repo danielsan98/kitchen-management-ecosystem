@@ -143,7 +143,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{base_url}}/api/order/fetch-all-orders?hostname=D-2PROA1&ip=10.55.55.87&port=9201&playerUser=AdminA1&playerPass=Tgh7gjGCGH",
+              "raw": "{{base_url}}/api/order/fetch-all-orders?hostname=D-2PROA1&ip=0.0.0.0&port=9201&playerUser=user&playerPass=****",
               "host": [
                 "{{base_url}}"
               ],
@@ -199,7 +199,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://10.4.0.169:5001/api/order/get-orders?preparationStatus=2&page=1&playerIp=10.100.95.20&playerUser=AdminA1&playerPass=Tgh7gjGCGH&port=9201&hostname=D-2PROA1&limit=6",
+              "raw": "http://10.4.0.169:5001/api/order/get-orders?preparationStatus=2&page=1&playerIp=0.0.0.0&playerUser=user&playerPass=****&port=9201&hostname=D-2PROA1&limit=6",
               "protocol": "http",
               "host": [
                 "10",
@@ -257,7 +257,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{base_url}}/api/order/get-orders-from-api?admitOneServer=10.55.55.87&port=9201&playerUser=AdminA1&playerPass=Tgh7gjGCGH&hostname=D-2PROA1",
+              "raw": "{{base_url}}/api/order/get-orders-from-api?admitOneServer=0.0.0.0&port=9201&playerUser=user&playerPass=****&hostname=D-2PROA1",
               "host": [
                 "{{base_url}}"
               ],
